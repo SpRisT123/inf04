@@ -3,9 +3,9 @@
 #include <QMessageBox>
 #include <cstdlib>
 #include <ctime>
-#include <fstream>
+//#include <fstream>
 
-
+QString gghaslo;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -52,14 +52,15 @@ void MainWindow::on_pushButton_clicked()
         haslo+=litery[0+rand()%25];
     }
 
-    std::fstream plik;
-    plik.open("haslo.txt",std::ios::out);
-    plik<<haslo.toStdString();
-    plik.close();
+    //std::fstream plik;
+    //plik.open("haslo.txt",std::ios::out);
+    //plik<<haslo.toStdString();
+   // plik.close();
 
     QMessageBox msgBox1;
     msgBox1.setText(haslo);
     msgBox1.exec();
+    gghaslo=haslo;
 
 }
 
@@ -72,14 +73,14 @@ void MainWindow::on_pushButton_2_clicked()
     QString stanowsiko=ui->comboBox->currentText();
     std::string haslo;
 
-    std::fstream plik;
-    plik.open("haslo.txt",std::ios::in);
-    std::getline(plik,haslo);
-    userhaslo=QString::fromStdString(haslo);
-    plik.close();
+    //std::fstream plik;
+    //plik.open("haslo.txt",std::ios::in);
+    //std::getline(plik,haslo);
+    //userhaslo=QString::fromStdString(haslo);
+    //plik.close();
 
     QMessageBox msgbox;
-    msgbox.setText("Dane pracownika: "+imie+" "+nazwisko+" "+stanowsiko+" Hasło: "+userhaslo);
+    msgbox.setText("Dane pracownika: "+imie+" "+nazwisko+" "+stanowsiko+" Hasło: "+gghaslo);
     msgbox.exec();
 
 }
